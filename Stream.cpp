@@ -1,15 +1,15 @@
-#include "Stream.hpp"
+#include "InputStream.hpp"
 #include <unistd.h>
 
-Stream::Stream(string filename)
+InputStream::InputStream(string filename)
 {
 	path = filename;
 }
 
-Stream::~Stream()
+InputStream::~InputStream()
 {}
 
-void Stream::open()
+void InputStream::open()
 {
 	file.open(path.c_str());
 	if(file){
@@ -19,13 +19,13 @@ void Stream::open()
 	}
 }
 
-void Stream::close()
+void InputStream::close()
 {
 	file.close();
 }
 
 
-void Stream::readln()//charactère par charactère, attention peut etre faut il utiliser fonction read() de unistd mais pas reussis a faire fonctionner, peut etre file.read(c,1)
+void InputStream::readln()//charactère par charactère, attention peut etre faut il utiliser fonction read() de unistd mais pas reussis a faire fonctionner, peut etre file.read(c,1)
 {
 	if (file){
 		string line;
@@ -45,11 +45,11 @@ void Stream::readln()//charactère par charactère, attention peut etre faut il 
 	}
 }
 
-void Stream::seek_pos(int pos){
+void InputStream::seek_pos(int pos){
 	file.seekg(pos);
 }
 
-bool Stream::end_of_stream(){
+bool InputStream::end_of_stream(){
 	if(file.eof()){
 		return true;
 	}
@@ -58,15 +58,4 @@ bool Stream::end_of_stream(){
 	}
 }
 
-void Stream::create(string name_file)
-{
-	ofstream new_file(name_file.c_str());
-	new_file_pointer = &new_file;
-}
-
-
-void Stream::writeln(string str, fstream &output_file)
-{
-	output_file << str << endl;
-}
 
