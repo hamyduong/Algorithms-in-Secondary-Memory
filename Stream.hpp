@@ -6,18 +6,16 @@
 using namespace std;
 
 
-class Stream
+class InputStream
 {
 public:
-	Stream(string filename);
-	~Stream();
+	InputStream(string filename);
+	~InputStream();
 	void open();
 	void readln();
 	void seek_pos(int pos);
 	bool end_of_stream();
-	void writeln(string str, fstream &output_file);
 	void close();
-	void create(string name_file);
 
 private:
 	string path;
